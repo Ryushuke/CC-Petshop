@@ -1,0 +1,33 @@
+/* CSS HEX
+--rich-black: #001524ff;
+--papaya-whip: #ffecd1ff;
+--pacific-cyan: #22afd3ff;
+--orange-wheel: #ff7d00ff;
+--sienna: #78290fff;
+*/
+
+.header
+{
+	background-color: #22afd3;
+	color: #001524;
+	padding: 0 0 10px 0;
+	text-align: center;
+}
+
+.logo
+{
+	width: 150px;
+	height: auto;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.header span
+{
+	display: inline-block;
+	vertical-align: middle;
+	font-family: "Playpen Sans Hebrew", cursive;
+	font-optical-sizing: auto;
+	font-weight: 100;
+	font-style: normal;
+}
