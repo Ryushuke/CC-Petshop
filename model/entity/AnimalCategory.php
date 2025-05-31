@@ -1,34 +1,39 @@
 <?php
 
-class AnimalCategory
+enum AnimalCategory: string
 {
-	private $id;
-	private $createdAt;
-	private $description;
+	case CAT = 'Gato';
+	case DOG = 'Cão';
+	case BIRD = 'Pássaro';
+	case FISH = 'Peixe';
+	case REPTILE = 'Réptil';
+	case RODENT = 'Roedor';
+	case OTHER = 'Outro';
 
-	// Obrigatórios;
-	private $name;
-
-	public function __construct($id, $name, $description)
+	public static function fromString(string $value): ?self
 	{
-		$this->id = $id;
-		$this->createdAt = date("d.m.Y");
-		$this->name = $name;
-		$this->description = $description;
+		return match ($value) {
+			'Gato' => self::CAT,
+			'Cão' => self::DOG,
+			'Pássaro' => self::BIRD,
+			'Peixe' => self::FISH,
+			'Réptil' => self::REPTILE,
+			'Roedor' => self::RODENT,
+			'Outro' => self::OTHER,
+			default => null,
+		};
 	}
 
-	public function getId()
+	public function getIcon(): string
 	{
-		return $this->id;
-	}
-
-	public function getName()
-	{
-		return $this->name;
-	}
-
-	public function getDescription()
-	{
-		return $this->description;
+		return match ($this) {
+			self::CAT => '🐱',
+			self::DOG => '🐶',
+			self::BIRD => '🐦',
+			self::FISH => '🐟',
+			self::REPTILE => '🦎',
+			self::RODENT => '🐭',
+			self::OTHER => '🐾',
+		};
 	}
 }

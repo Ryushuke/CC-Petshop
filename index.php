@@ -13,6 +13,9 @@
 <body>
 <?php
 include_once "view/header.php";
+include_once "controller/ServiceOrderController.php";
+$controller = new ServiceOrderController();
+$controller->listServiceOrders();
 ?>
 </body>
 </html>

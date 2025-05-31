@@ -1,15 +1,38 @@
-/* CSS HEX
---rich-black: #001524ff;
---papaya-whip: #ffecd1ff;
---pacific-cyan: #22afd3ff;
---orange-wheel: #ff7d00ff;
---sienna: #78290fff;
-*/
+:root
+{
+	/** Fontes */
+	--dark: #000000;
+	--light: #ffffff;
+
+	/** Cor Primaria Highlighs */
+	--primary-a0: #22b0d4;
+	--primary-a10: #4eb9d9;
+	--primary-a20: #6bc1de;
+	--primary-a30: #84cae2;
+	--primary-a40: #9ad3e7;
+	--primary-a50: #b0dcec;
+
+	/** Cor de Fundo */
+	--surface-a0: #001524;
+	--surface-a10: #1b2a39;
+	--surface-a20: #34414e;
+	--surface-a30: #4e5965;
+	--surface-a40: #69727d;
+	--surface-a50: #858d96;
+
+	/** Cor de fundo Tonal */
+	--surface-tonal-a0: #052233;
+	--surface-tonal-a10: #213747;
+	--surface-tonal-a20: #3a4c5b;
+	--surface-tonal-a30: #546471;
+	--surface-tonal-a40: #6e7b87;
+	--surface-tonal-a50: #8a949e;
+}
 
 .header
 {
-	background-color: #22afd3;
-	color: #001524;
+	background-color: var(--surface-tonal-a0);
+	color: var(--primary-a0);
 	padding: 0 0 10px 0;
 	text-align: center;
 }
@@ -28,6 +51,54 @@
 	vertical-align: middle;
 	font-family: "Playpen Sans Hebrew", cursive;
 	font-optical-sizing: auto;
-	font-weight: 100;
+	font-weight: 150;
 	font-style: normal;
+	font-size: larger;
+}
+
+.order-list
+{
+	text-align: center;
+	color: var(--primary-a0);
+}
+
+.order-list table
+{
+	width: 80%;
+	margin: auto;
+}
+
+.order-list table th
+{
+	background-color: var(--surface-tonal-a10);
+	color: var(--primary-a0);
+	padding: 10px;
+	border-radius: 10px 10px 0 0;
+}
+
+.order-list table td
+{
+	/* border: 1px 0 solid var(--surface-tonal-a40); */
+	background-color: var(--surface-tonal-a20);
+	color: var(--primary-a50);
+	transition: 0.3s;
+}
+
+.order-list table tr:nth-child(even) td
+{
+	background-color: var(--surface-tonal-a30);
+}
+
+.order-list table tr:hover td
+{
+	background-color: var(--surface-tonal-a40);
+	color: var(--primary-a0);
+	height: 2em;
+}
+
+body
+{
+	margin: 0;
+	padding: 0;
+	background-color: var(--surface-a0);
 }
