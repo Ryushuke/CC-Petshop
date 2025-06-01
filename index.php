@@ -12,10 +12,30 @@
 </head>
 <body>
 <?php
+
 include_once "view/header.php";
 include_once "controller/ServiceOrderController.php";
-$controller = new ServiceOrderController();
-$controller->listServiceOrders();
+include_once "controller/ServicesController.php";
+
+if (!isset($_GET['nav']))
+{
+	$servicesController = new ServicesController();
+	$servicesController->listServices();
+}
+
+switch($_GET['nav'])
+{
+	case 'agendamentos':
+		$controller = new ServiceOrderController();
+		$controller->listServiceOrders();
+	break;
+	case 'home':
+	default:
+		$servicesController = new ServicesController();
+		$servicesController->listServices();
+	break;
+}
+
 ?>
 </body>
 </html>

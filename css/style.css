@@ -27,6 +27,8 @@
 	--surface-tonal-a30: #546471;
 	--surface-tonal-a40: #6e7b87;
 	--surface-tonal-a50: #8a949e;
+
+	--body-height: 1080px;
 }
 
 .header
@@ -35,6 +37,22 @@
 	color: var(--primary-a0);
 	padding: 0 0 10px 0;
 	text-align: center;
+}
+
+div.main-content
+{
+	width: 80%;
+	margin: 20px auto;
+	background-color: var(--surface-a0);
+	display: block;
+	height: calc(var(--body-height) * 0.8);
+}
+
+h2.title
+{
+	text-align: center;
+	color: var(--primary-a10);
+	margin-top: 50px;
 }
 
 .logo
@@ -145,15 +163,73 @@
 	color: var(--primary-a0);
 }
 
+.service-list .main-content
+{
+	background-color: var(--surface-tonal-a10);
+}
+
+.service-list .view
+{
+	width: inherit;
+	height: 90%;
+	display: block;
+	margin: 0 auto;
+}
+
+.service-item
+{
+	display: block;
+	background-color: var(--primary-a10);
+	width: 40%;
+	border: 2.5px solid var(--primary-a0);
+	border-radius: 10px;
+	margin: 10px 4.5%;
+	float: left;
+}
+
+.service-item > *
+{
+	margin: 10px 2px;
+}
+
+.service-item h3
+{
+	background-color: var(--primary-a0);
+	color: var(--surface-a10);
+	text-align: center;
+	margin: 0 0 10px 0;
+	padding: 10px 0;
+	border-radius: 10px 10px 0 0;
+}
+
 .category-icon
 {
 	font-size: 2em;
 	display: inline-block;
 	vertical-align: top;
 }
+
+.edit-link
+{
+	text-decoration: none;
+	color: var(--surfaceß-a0);
+	margin: 0;
+	padding: 0;
+}
+
+.button-edit
+{
+	float: right;
+	background-color: var(--primary-a0);
+	border-color: var(--primary-a20);
+	padding: 5px;
+	border-radius: 2px;
+}
+
 body
 {
 	margin: 0;
 	padding: 0;
 	background-color: var(--surface-a0);
+	height: 1080px;
 }
