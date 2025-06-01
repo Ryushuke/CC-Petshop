@@ -96,6 +96,55 @@
 	height: 2em;
 }
 
+.navbar
+{
+	width: 100%;
+	background-color: var(--surface-tonal-a0);
+	float: left;
+	height: 35px;
+}
+
+.navbar ul
+{
+	list-style-type: none;
+	margin: 0 0 0 50%;
+	padding: 0;
+}
+
+.navbar ul li
+{
+	display: inline;
+	float: left;
+}
+
+.navbar ul li a
+{
+	display: block;
+	padding: 8px 20px;
+	color: var(--primary-a0);
+	text-decoration: none;
+	font-size: large;
+	border-radius: 15px 15px 0 0;
+}
+
+.navbar ul li a:hover
+{
+	background-color: var(--primary-a40);
+	color: var(--surface-a10);
+}
+
+.navbar a.active
+{
+	background-color: var(--surface-a0);
+	height: 35px;
+}
+
+.navbar a.active:hover
+{
+	background-color: var(--surface-a0);
+	color: var(--primary-a0);
+}
+
 body
 {
 	margin: 0;

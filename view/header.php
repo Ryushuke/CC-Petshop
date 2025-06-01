@@ -4,4 +4,7 @@
 		<h1>Jorgina Petshop</h1>
 		<p>Onde seu pet é tratado como rei!</p>
 	</span>
+	<?php
+	include_once "view/navbar.php";
+	?>
 </div>
