@@ -145,6 +145,12 @@
 	color: var(--primary-a0);
 }
 
+.category-icon
+{
+	font-size: 2em;
+	display: inline-block;
+	vertical-align: top;
+}
 body
 {
 	margin: 0;
