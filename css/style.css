@@ -198,9 +198,16 @@ h2.title
 	float: left;
 }
 
+.service-item:hover
+{
+	background-color: var(--surface-tonal-a10);
+	border-color: var(--surface-a50);
+	transition: 0.3s;
+}
+
 .service-item > *
 {
-	margin: 10px 2px;
+	margin: 10px 5px;
 }
 
 .service-item h3
@@ -213,6 +220,12 @@ h2.title
 	border-radius: 10px 10px 0 0;
 }
 
+.service-item:hover h3
+{
+	background-color: var(--surface-a10);
+	color: var(--primary-a0);
+}
+
 .category-icon
 {
 	font-size: 2em;
@@ -220,12 +233,24 @@ h2.title
 	vertical-align: top;
 }
 
-.edit-link
+.service-item a
 {
 	text-decoration: none;
-	color: var(--surfaceß-a0);
+	color: var(--surface-a0);
 	margin: 0;
 	padding: 0;
+}
+
+.service-item:hover a
+{
+	color: var(--primary-a20);
+}
+
+.new
+{
+	font-size: xxx-large;
+	text-align: center;
+	display: block;
 }
 
 .button-edit

@@ -4,7 +4,7 @@ function render($render, bool $edit)
 {
 	$html = "<div class='service-item'>";
 	$action = $edit ? 'editar' : 'agendar';
-	$html .= "<a class='edit-link' href=?nav=service&acao={$action}&id={$render->id}>";
+	$html .= "<a href=?nav=service&acao={$action}&id={$render->id}>";
 	$html .= "<h3>{$render->name}</h3>";
 	$html .= "<p>{$render->description}</p>";
 	$html .= '<p>Preço: R$' . number_format($render->price, 2, ',','.') . "</p>";
@@ -29,7 +29,7 @@ function renderButton(bool $edit)
 
 function renderNewButton()
 {
-	$html = "<div class='service-item'><a class='edit-link' href=?nav=service&acao=editar&id=null>+</a></div>";
+	$html = "<div class='service-item'><a class='new' href=?nav=service&acao=editar&id=null>+</a></div>";
 	echo $html;
 }
 
