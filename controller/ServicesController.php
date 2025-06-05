@@ -2,20 +2,53 @@
 
 class ServicesController
 {
+	private $services = array();
+	private bool $editMode;
 
-	public function listServices()
+	public function __construct()
 	{
-		$services = 
+		$this->services = 
 		[
 			new ServicesDTO(1, "Banho", "Serviço de banho completo.", [AnimalCategory::CAT, AnimalCategory::DOG], 50.00, 60),
 			new ServicesDTO(2, "Tosa", "Tosa completa para cães e gatos", [AnimalCategory::CAT, AnimalCategory::DOG], 70.00, 45),
 			new ServicesDTO(3, "Vacinação", "Vacinação anual para cães e gatos", [AnimalCategory::CAT, AnimalCategory::DOG, AnimalCategory::RODENT], 30.00, 30),
-			new ServicesDTO(4, "Consulta Veterinária", "Consulta com veterinário especializado", [AnimalCategory::ALL], 100.00, 90),
+			new ServicesDTO(4, "Consulta Veterinária", "Consulta com veterinário especializado", AnimalCategory::getAll(), 100.00, 90),
 		];
-		
-		$editMode = isset($_GET['acao']) && $_GET['acao'] === 'editar';
+
+		$this->editMode = isset($_GET['acao']) && $_GET['acao'] === 'editar';
+	}
+	
+	public function listServices()
+	{
+		$services = $this->services;
+		$editMode = $this->editMode;
 
 		include_once 'view/servicesList.php';
+	}
+
+	public function showService()
+	{
+		$service = new ServicesDTO();
+		$editMode = $this->editMode;
+
+		if (isset($_GET['id']))
+		{
+			$id = $_GET['id'];
+
+			if($id !== null)
+			{
+				foreach ($this->services as $s)
+				{
+					if ($s->id == $id)
+					{
+						$service = $s;
+						break;
+					}
+				}
+			}
+		}
+
+		include_once 'view/service.php';
 	}
 }
 

@@ -9,7 +9,6 @@ enum AnimalCategory: string
 	case REPTILE = 'Réptil';
 	case RODENT = 'Roedor';
 	case OTHER = 'Outro';
-	case ALL = 'Todos';
 
 	public static function fromString(string $value): ?self
 	{
@@ -21,7 +20,6 @@ enum AnimalCategory: string
 			'Réptil' => self::REPTILE,
 			'Roedor' => self::RODENT,
 			'Outro' => self::OTHER,
-			'Todos' => self::ALL,
 			default => null,
 		};
 	}
@@ -37,8 +35,11 @@ enum AnimalCategory: string
 			self::REPTILE => str_replace($html,'*', '🦎'),
 			self::RODENT => str_replace($html,'*', '🐭'),
 			self::OTHER => str_replace($html,'*', '🐾'),
-			self::ALL => self::CAT->geticon() . self::DOG->geticon() . self::BIRD->geticon()
-			. self::FISH->geticon() . self::REPTILE->geticon() . self::RODENT->geticon() . self::OTHER->geticon(),
 		};
+	}
+
+	public static function getAll()
+	{
+		return self::cases();
 	}
 }

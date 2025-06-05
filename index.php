@@ -29,6 +29,10 @@ switch($_GET['nav'])
 		$controller = new ServiceOrderController();
 		$controller->listServiceOrders();
 	break;
+	case 'service':
+		$servicesController = new ServicesController();
+		$servicesController->showService();
+		break;
 	case 'home':
 	default:
 		$servicesController = new ServicesController();
