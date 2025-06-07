@@ -1,26 +1,22 @@
 <?php
 
+require_once 'model/repository/ServiceRepository.php';
+require_once 'dto/ServiceDTO.php';
+
 class ServicesController
 {
-	private $services = array();
+	private ServiceRepository $services;
 	private bool $editMode;
 
 	public function __construct()
 	{
-		$this->services = 
-		[
-			new ServicesDTO(1, "Banho", "Serviço de banho completo.", [AnimalCategory::CAT, AnimalCategory::DOG], 50.00, 60),
-			new ServicesDTO(2, "Tosa", "Tosa completa para cães e gatos", [AnimalCategory::CAT, AnimalCategory::DOG], 70.00, 45),
-			new ServicesDTO(3, "Vacinação", "Vacinação anual para cães e gatos", [AnimalCategory::CAT, AnimalCategory::DOG, AnimalCategory::RODENT], 30.00, 30),
-			new ServicesDTO(4, "Consulta Veterinária", "Consulta com veterinário especializado", AnimalCategory::getAll(), 100.00, 90),
-		];
-
+		$this->services = new ServiceRepository();
 		$this->editMode = isset($_GET['acao']) && $_GET['acao'] === 'editar';
 	}
 	
 	public function listServices()
 	{
-		$services = $this->services;
+		$services = $this->services->getServices();
 		$editMode = $this->editMode;
 
 		include_once 'view/servicesList.php';
@@ -29,7 +25,13 @@ class ServicesController
 	public function showService()
 	{
 		$service = new ServicesDTO();
-		$editMode = $this->editMode;
+		echo self::isCreateOrUpdateRequest();
+
+		if(self::isCreateOrUpdateRequest())
+		{
+			$this->createOrUpdate();
+			return;
+		}
 
 		if (isset($_GET['id']))
 		{
@@ -37,7 +39,7 @@ class ServicesController
 
 			if($id !== null)
 			{
-				foreach ($this->services as $s)
+				foreach ($this->services->getServices() as $s)
 				{
 					if ($s->id == $id)
 					{
@@ -48,28 +50,36 @@ class ServicesController
 			}
 		}
 
+		$editMode = $this->editMode;
 		include_once 'view/service.php';
 	}
-}
 
-class ServicesDTO
-{
-	public $id;
-	public $name;
-	public $description;
-	public $category;
-	public $price;
-	public $duration;
-	
-	public function __construct($id = null, $name = null, $description = null, $category = null, $price = null, $duration = null)
+	static function isCreateOrUpdateRequest() : bool
 	{
-		$this->id = $id;
-		$this->name = $name;
-		$this->description = $description;
-		$this->category = $category;
-		$this->price = $price;
-		$this->duration = $duration;
+		return isset($_GET['acao']) && $_GET['acao'] === 'editado';
+	}
+
+	function createOrUpdate()
+	{
+		$service = new ServicesDTO(
+			id: intval($_POST['id']),
+			name: $_POST['name'],
+			description: $_POST['description'],
+			price: floatval(str_replace(',', '.', $_POST['price'])),
+			duration: intval($_POST['duration'])
+		);
+
+		foreach(AnimalCategory::cases() as $category)
+		{
+			if(isset($_POST[$category->name]) && $_POST[$category->name] === 'on')
+			{
+				$service->category[] = $category;
+			}
+		}
+
+		$this->services->createOrUpdateService($service);
+		// header('Location: ?nav=services');
+		exit();
 	}
 }
-
 ?>
