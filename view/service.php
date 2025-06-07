@@ -18,7 +18,7 @@ function renderCategoryCheckbox(AnimalCategory $category, bool $checked = false)
 
 <div class="service main-content">
 	<h2 class="title">Serviço</h2>
-	<form action="?nav=service&acao=<?php echo $editMode ? 'editar' : 'agendar'; ?>" method="post">
+	<form action="?nav=service&acao=editado" method="post">
 		<input type="hidden" name="id" value="<?php echo $service->id; ?>" />
 		
 		<div>
@@ -40,13 +40,13 @@ function renderCategoryCheckbox(AnimalCategory $category, bool $checked = false)
 		</div>
 
 		<div class="categories">
-			<h3>Categoria</h3>
-			<div>
+			<label for="categories">Categoria:</label>
+			<div name="categories">
 				<?php
 					$categories = AnimalCategory::cases();
 					foreach (AnimalCategory::cases() as $category)
 					{
-						renderCategoryCheckbox($category, in_array($category, $service->category));
+						renderCategoryCheckbox($category, isset($service->category) && in_array($category, $service->category));
 					}
 				?>
 			</div>
