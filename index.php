@@ -14,28 +14,22 @@
 <?php
 
 include_once "view/header.php";
-include_once "controller/ServiceOrderController.php";
 include_once "controller/ServicesController.php";
+
+$servicesController = new ServicesController();
 
 if (!isset($_GET['nav']))
 {
-	$servicesController = new ServicesController();
 	$servicesController->listServices();
 }
 
 switch($_GET['nav'])
 {
-	case 'agendamentos':
-		$controller = new ServiceOrderController();
-		$controller->listServiceOrders();
-	break;
-	case 'service':
-		$servicesController = new ServicesController();
+	case 'cadastro':
 		$servicesController->showService();
 		break;
-	case 'home':
+	case 'lista':
 	default:
-		$servicesController = new ServicesController();
 		$servicesController->listServices();
 	break;
 }
