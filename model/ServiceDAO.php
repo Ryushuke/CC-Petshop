@@ -2,6 +2,7 @@
 
 require_once "model/Connection.php";
 require_once "model/Service.php";
+require_once "controller/ServiceDTO.php";
 
 class ServiceDAO
 {
@@ -10,60 +11,48 @@ class ServiceDAO
 	const COL_ID = "id";
 	const COL_CREATED_AT = "created_at";
 	const COL_NAME = "name";
-	const COL_DESCRIPTION = "description";
 	const COL_PRICE = "price";
 	const COL_DURATION = "duration";
 	const COL_CATEGORY = "category";
 	const COL_UPDATED_AT = "updated_at";
 
-	public function createOrUpdateService($data)
+	static function getService(ServiceDTO $data) : Service
 	{
-		$service = new Service(
+		return new Service(
 			$data->name,
-			$data->description,
 			$data->price,
 			$data->duration,
 			$data->category,
 			$data->id,
 		);
-
-		if($data->id >= 0)
-		{
-			return $this->updateService($service);
-		}
-		else
-		{
-			return $this->createService($service);
-		}
 	}
 
-	function createService($service)
+	public function createService(ServiceDTO $data)
 	{
+		$service = self::getService($data);
 		$db = Connection::getConnection();
 		$statement = $db->prepare('INSERT INTO ' . self::TABLE_NAME . " ("
-			. self::COL_NAME . ',' . self::COL_DESCRIPTION . ',' . self::COL_PRICE . ',' . self::COL_DURATION . ',' . self::COL_CATEGORY
-			. ") VALUES (:name, :description, :price, :duration, :category)");
+			. self::COL_NAME . ',' . self::COL_PRICE . ',' . self::COL_DURATION . ',' . self::COL_CATEGORY
+			. ") VALUES (:name, :price, :duration, :category)");
 
 		$statement->bindValue(':name', $service->getName());
-		$statement->bindValue(':description', $service->getDescription());
 		$statement->bindValue(':price', $service->getPrice());
 		$statement->bindValue(':duration', $service->getDuration());
 		$statement->bindValue(':category', $service->getCategory());
-		print_r($statement);
 
 		return $statement->execute();
 	}
 
-	function updateService($service)
+	public function updateService(ServiceDTO $data)
 	{
+		$service = self::getService($data);
 		$db = Connection::getConnection();
 		$statement = $db->prepare('UPDATE ' . self::TABLE_NAME . ' SET '
-			. self::COL_NAME . '= :name, ' . self::COL_DESCRIPTION . ' = :description, ' . self::COL_PRICE . ' = :price, '
+			. self::COL_NAME . '= :name, ' . self::COL_PRICE . ' = :price, '
 			. self::COL_DURATION . ' = :duration, ' . self::COL_CATEGORY . ' = :category, '
 			. 'WHERE ' . self::COL_ID . ' = :id');
 
 		$statement->bindValue(':name', $service->getName());
-		$statement->bindValue(':description', $service->getDescription());
 		$statement->bindValue(':price', $service->getPrice());
 		$statement->bindValue(':duration', $service->getDuration());
 		$statement->bindValue(':category', $service->getCategory());
@@ -84,7 +73,6 @@ class ServiceDAO
 			$service = new Service
 			(
 				$row[self::COL_NAME],
-				$row[self::COL_DESCRIPTION],
 				$row[self::COL_PRICE],
 				$row[self::COL_DURATION],
 				$row[self::COL_CATEGORY],
