@@ -29,6 +29,7 @@
 	--surface-tonal-a50: #8a949e;
 
 	--negative-a0: rgb(190, 34, 34);
+	--negative-a10: rgb(191, 122, 122);
 
 	--body-height: 1080px;
 }
@@ -238,6 +239,12 @@ h2.title
 .service input
 {
 	flex-grow: 1;
+}
+
+.service input:user-invalid
+{
+	flex-grow: 1;
+	background-color: var(--negative-a10);
 }
 
 .service textarea
