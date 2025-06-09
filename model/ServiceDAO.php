@@ -86,6 +86,14 @@ class ServiceDAO
 
 		return $services;
 	}
+
+	public function deleteService(int $id)
+	{
+		$db = Connection::getConnection();
+		$statement = $db->prepare('DELETE FROM ' . self::TABLE_NAME . ' WHERE ' . self::COL_ID . ' = :id');
+		$statement->bindValue(':id', $id);
+		return $statement->execute();
+	}
 }
 
 ?>

@@ -34,6 +34,8 @@ switch($_GET['nav'])
 	case 'editar':
 		$servicesController->updateService();
 	break;
+	case 'excluir':
+		$servicesController->deleteService();
 	case 'lista':
 	default:
 		$servicesController->listServices();

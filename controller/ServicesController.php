@@ -79,5 +79,16 @@ class ServicesController
 		header('Location: ?nav=lista');
 		exit();
 	}
+
+	public function deleteService()
+	{
+		if (isset($_GET['id']))
+		{
+			$id = intval($_GET['id']);
+			$this->services->deleteService($id);
+		}
+		header('Location: ?nav=lista');
+		exit();
+	}
 }
 ?>
