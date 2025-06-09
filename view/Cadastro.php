@@ -5,7 +5,7 @@
 
 <div class="service main-content">
 	<h2 class="title">Serviço</h2>
-	<form action="?nav=<?php echo $editMode ? 'editado' : 'novo'; ?>" method="post">
+	<form action="?nav=<?php echo $editMode ? 'editar' : 'novo'; ?>" method="post">
 		<input type="hidden" name="id" value="<?php echo $service->id; ?>" />
 		
 		<div>

@@ -49,7 +49,7 @@ class ServiceDAO
 		$db = Connection::getConnection();
 		$statement = $db->prepare('UPDATE ' . self::TABLE_NAME . ' SET '
 			. self::COL_NAME . '= :name, ' . self::COL_PRICE . ' = :price, '
-			. self::COL_DURATION . ' = :duration, ' . self::COL_CATEGORY . ' = :category, '
+			. self::COL_DURATION . ' = :duration, ' . self::COL_CATEGORY . ' = :category '
 			. 'WHERE ' . self::COL_ID . ' = :id');
 
 		$statement->bindValue(':name', $service->getName());

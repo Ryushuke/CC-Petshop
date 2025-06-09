@@ -12,6 +12,8 @@ function renderService(ServiceDTO $service, $position)
 	$html .= "<td>R$ " . number_format($service->price, 2, ",", ".") . "</td>";
 	$html .= "<td>" . $service->category . "</td>";
 	$html .= "<td>" . date("d-M-Y H:i", $service->updatedAt->getTimestamp()) . "</td>";
+	$html .= "<td><input type='button' class='button-edit' value='Editar' onclick=\"location.href='?nav=cadastro&id={$service->id}'\" />";
+	$html .= "<input type='button' class='button-delete' value='Excluir' onclick=\"location.href='?nav=excluir&id={$service->id}'\" /></td>";
 	$html .= "</tr>";
 	echo $html;
 }

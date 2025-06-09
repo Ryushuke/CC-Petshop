@@ -43,7 +43,7 @@ class ServicesController
 			}
 		}
 
-		$editMode = $this->editMode;
+		$editMode = $service->id !== null;
 		include_once 'view/Cadastro.php';
 	}
 
