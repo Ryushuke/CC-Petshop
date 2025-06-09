@@ -75,6 +75,7 @@ class ServicesController
 	public function createService()
 	{
 		$service = self::getData();
+		$this->services->createService($service);
 		header('Location: ?nav=lista');
 		exit();
 	}
