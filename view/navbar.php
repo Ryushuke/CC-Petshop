@@ -3,7 +3,7 @@
 function renderList()
 {
 	$key = 'nav';
-	$active = "home";
+	$active = "lista";
 	if(isset($_GET[$key]))
 	{
 		$active = $_GET[$key];
@@ -33,8 +33,8 @@ function renderExtra($active)
 
 function renderMainList($activeSection)
 {
-	$sections = [ 'home', 'agendamentos', 'tutores' ];
-	$sectionLabels = [ 'Home', 'Agendamentos', 'Tutores' ];
+	$sections = [ 'lista', 'cadastro' ];
+	$sectionLabels = [ 'Lista', 'Cadastro' ];
 
 	$active = array_search($activeSection, $sections);
 	if($active === false)

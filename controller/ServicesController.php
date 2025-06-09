@@ -25,13 +25,6 @@ class ServicesController
 	public function showService()
 	{
 		$service = new ServiceDTO();
-		echo self::isCreateOrUpdateRequest();
-
-		if(self::isCreateOrUpdateRequest())
-		{
-			$this->createOrUpdate();
-			return;
-		}
 
 		if (isset($_GET['id']))
 		{
@@ -51,7 +44,7 @@ class ServicesController
 		}
 
 		$editMode = $this->editMode;
-		include_once 'view/service.php';
+		include_once 'view/Cadastro.php';
 	}
 
 	static function isCreateOrUpdateRequest() : bool
@@ -59,19 +52,30 @@ class ServicesController
 		return isset($_GET['acao']) && $_GET['acao'] === 'editado';
 	}
 
-	function createOrUpdate()
+	static function getData() : ServiceDTO
 	{
-		$service = new ServiceDTO(
+		return new ServiceDTO(
 			id: intval($_POST['id']),
 			name: $_POST['name'],
-			description: $_POST['description'],
 			price: floatval(str_replace(',', '.', $_POST['price'])),
 			duration: intval($_POST['duration']),
 			category: $_POST['category']
 		);
+	}
 
-		$this->services->createOrUpdateService($service);
-		// header('Location: ?nav=services');
+	public function updateService()
+	{
+		$service = self::getData();
+
+		$this->services->updateService($service);
+		header('Location: ?nav=lista');
+		exit();
+	}
+
+	public function createService()
+	{
+		$service = self::getData();
+		header('Location: ?nav=lista');
 		exit();
 	}
 }

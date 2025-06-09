@@ -1,23 +1,16 @@
 <?php
 
-require_once "model/entity/AnimalCategory.php";
 
 ?>
 
-
 <div class="service main-content">
 	<h2 class="title">Serviço</h2>
-	<form action="?nav=lista&acao=editado" method="post">
+	<form action="?nav=<?php echo $editMode ? 'editado' : 'novo'; ?>" method="post">
 		<input type="hidden" name="id" value="<?php echo $service->id; ?>" />
 		
 		<div>
 			<label for="name">Nome do Serviço:</label>
 			<input type="text" id="name" name="name" value="<?php echo htmlspecialchars($service->name); ?>" required/>
-		</div>
-		
-		<div>
-			<label for="description">Descrição:</label>
-			<textarea id="description" name="description" required><?php echo htmlspecialchars($service->description); ?></textarea>
 		</div>
 
 		<div>
@@ -34,7 +27,7 @@ require_once "model/entity/AnimalCategory.php";
 		</div>
 
 		<div>
-			<input type="submit" class="button-submit" value="<?php echo $editMode ? 'Salvar' : 'Agendar'; ?>" />
+			<input type="submit" class="button-submit" value="<?php echo $editMode ? 'Atualizar' : 'Criar'; ?>" />
 			<input type="button" class="button-cancel" value="Cancelar" onclick="location.href='?nav=lista'" />
 		</div>
 	</form>

@@ -27,7 +27,13 @@ switch($_GET['nav'])
 {
 	case 'cadastro':
 		$servicesController->showService();
-		break;
+	break;
+	case 'novo':
+		$servicesController->createService();
+	break;
+	case 'editar':
+		$servicesController->updateService();
+	break;
 	case 'lista':
 	default:
 		$servicesController->listServices();
