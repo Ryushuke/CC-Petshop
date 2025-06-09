@@ -1,24 +1,13 @@
 <?php
 
-function renderCategoryCheckbox(AnimalCategory $category, bool $checked = false)
-{
-	$html = "<label>";
-	$html .= "<input name='{$category->name}' type='checkbox'";
-	
-	if($checked)
-	{
-		$html .= " checked";
-	}
-	
-	$html .= " /><span>{$category->getIcon()} {$category->value}</span></label>";
-	echo $html;
-}
+require_once "model/entity/AnimalCategory.php";
+
 ?>
 
 
 <div class="service main-content">
 	<h2 class="title">Serviço</h2>
-	<form action="?nav=service&acao=editado" method="post">
+	<form action="?nav=lista&acao=editado" method="post">
 		<input type="hidden" name="id" value="<?php echo $service->id; ?>" />
 		
 		<div>
@@ -39,22 +28,14 @@ function renderCategoryCheckbox(AnimalCategory $category, bool $checked = false)
 			<input type="number" class="inline" id="duration" name="duration" value="<?php echo $service->duration; ?>" required />
 		</div>
 
-		<div class="categories">
-			<label for="categories">Categoria:</label>
-			<div name="categories">
-				<?php
-					$categories = AnimalCategory::cases();
-					foreach (AnimalCategory::cases() as $category)
-					{
-						renderCategoryCheckbox($category, isset($service->category) && in_array($category, $service->category));
-					}
-				?>
-			</div>
+		<div>
+			<label for="category">Categoria:</label>
+			<input type="text" id="category" name="category" value="<?php echo htmlspecialchars($service->category); ?>" required/>
 		</div>
 
 		<div>
 			<input type="submit" class="button-submit" value="<?php echo $editMode ? 'Salvar' : 'Agendar'; ?>" />
-			<input type="button" class="button-cancel" value="Cancelar" onclick="location.href='?nav=services'" />
+			<input type="button" class="button-cancel" value="Cancelar" onclick="location.href='?nav=lista'" />
 		</div>
 	</form>
 </div>

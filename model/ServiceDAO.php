@@ -1,7 +1,7 @@
 <?php
 
-require_once "model/repository/Connection.php";
-require_once "model/entity/Service.php";
+require_once "model/Connection.php";
+require_once "model/Service.php";
 
 class ServiceDAO
 {

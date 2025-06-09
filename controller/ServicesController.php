@@ -1,16 +1,16 @@
 <?php
 
-require_once 'model/repository/ServiceRepository.php';
-require_once 'dto/ServiceDTO.php';
+require_once "model/ServiceDAO.php";
+require_once "controller/ServiceDTO.php";
 
 class ServicesController
 {
-	private ServiceRepository $services;
+	private ServiceDAO $services;
 	private bool $editMode;
 
 	public function __construct()
 	{
-		$this->services = new ServiceRepository();
+		$this->services = new ServiceDAO();
 		$this->editMode = isset($_GET['acao']) && $_GET['acao'] === 'editar';
 	}
 	
@@ -19,12 +19,12 @@ class ServicesController
 		$services = $this->services->getServices();
 		$editMode = $this->editMode;
 
-		include_once 'view/servicesList.php';
+		include_once 'view/Lista.php';
 	}
 
 	public function showService()
 	{
-		$service = new ServicesDTO();
+		$service = new ServiceDTO();
 		echo self::isCreateOrUpdateRequest();
 
 		if(self::isCreateOrUpdateRequest())
@@ -61,21 +61,14 @@ class ServicesController
 
 	function createOrUpdate()
 	{
-		$service = new ServicesDTO(
+		$service = new ServiceDTO(
 			id: intval($_POST['id']),
 			name: $_POST['name'],
 			description: $_POST['description'],
 			price: floatval(str_replace(',', '.', $_POST['price'])),
-			duration: intval($_POST['duration'])
+			duration: intval($_POST['duration']),
+			category: $_POST['category']
 		);
-
-		foreach(AnimalCategory::cases() as $category)
-		{
-			if(isset($_POST[$category->name]) && $_POST[$category->name] === 'on')
-			{
-				$service->category[] = $category;
-			}
-		}
 
 		$this->services->createOrUpdateService($service);
 		// header('Location: ?nav=services');

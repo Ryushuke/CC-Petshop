@@ -67,7 +67,7 @@ class Service
 
 	public function toDto()
 	{
-		return new ServicesDTO(
+		return new ServiceDTO(
 			id: $this->id,
 			name: $this->name,
 			description: $this->description,
