@@ -9,7 +9,7 @@ class ServiceDAO
 	const TABLE_NAME = "servico";
 
 	const COL_ID = "id";
-	const COL_CREATED_AT = "created_at";
+	const COL_CREATED_AT = "create_at";
 	const COL_NAME = "name";
 	const COL_PRICE = "price";
 	const COL_DURATION = "duration";

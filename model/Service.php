@@ -1,5 +1,7 @@
 <?php
 
+use DateTime;
+
 class Service
 {
 	private $id;
@@ -19,8 +21,8 @@ class Service
 		$this->price = $price;
 		$this->duration = $duration;
 		$this->animal = $animal;
-		$this->createdAt = $createdAt ? new \DateTime($createdAt) : new \DateTime();
-		$this->updatedAt = $updatedAt ? new \DateTime($updatedAt) : $this->createdAt;
+		$this->createdAt = new DateTime($createdAt);
+		$this->updatedAt = new DateTime($updatedAt);
 	}
 
 	public function getId()
