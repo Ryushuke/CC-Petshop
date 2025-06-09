@@ -7,7 +7,7 @@ class Service
 	private $id;
 	private $createdAt;
 	private $updatedAt;
-	
+
 	// Obrigatórios;
 	private $name;
 	private $price;
